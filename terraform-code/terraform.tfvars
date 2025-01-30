@@ -1,1 +1,2 @@
-repo_count = 2
+repo_max = 2
+repos    = ["infra", "backend"]
