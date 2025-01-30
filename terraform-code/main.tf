@@ -3,6 +3,9 @@
 #   count       = var.repo_count
 # }
 
+data "github_user" "current" {
+  username = ""
+}
 
 resource "github_repository" "mtc_repo" {
   for_each    = var.repos
@@ -35,8 +38,15 @@ resource "github_repository_file" "readme" {
   repository          = github_repository.mtc_repo[each.key].name
   branch              = "main"
   file                = "README.md"
-  content             = "# This is a ${var.env} ${each.value.lang} for ${each.key} developers"
+  content             = <<-EOF
+                        # This is a ${var.env} ${each.value.lang} for ${each.key} developers.
+                        Last modified by ${data.github_user.current.name}"
+                        EOF
   overwrite_on_create = true
+
+  # lifecycle {
+  #   ignore_changes = [content]
+  # }
 }
 
 resource "github_repository_file" "index" {
@@ -46,6 +56,10 @@ resource "github_repository_file" "index" {
   file                = each.value.filename
   content             = "Hello ${each.value.lang}!"
   overwrite_on_create = true
+
+  lifecycle {
+    ignore_changes = [content]
+  }
 }
 
 output "repos" {
