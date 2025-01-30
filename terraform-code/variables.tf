@@ -22,7 +22,7 @@ variable "env" {
 }
 
 variable "repos" {
-  type        = set(string)
+  type        = map(map(string))
   description = "repos"
 
   validation {
