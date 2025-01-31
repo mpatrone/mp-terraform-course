@@ -22,7 +22,11 @@ variable "env" {
 }
 
 variable "repos" {
-  type        = map(map(string))
+  type = map( object({
+        lang     = string,
+        filename = string,
+        pages    = bool
+      }))
   description = "repos"
 
   validation {
