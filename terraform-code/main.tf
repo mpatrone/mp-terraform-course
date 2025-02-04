@@ -27,3 +27,7 @@ module "keys" {
   for_each  = toset(flatten([for k, v in module.repos : keys(v.clone-urls) if k == "dev"]))
   repo-name = each.key
 }
+
+module "info-page" {
+  source = "./modules/info-page"
+}
