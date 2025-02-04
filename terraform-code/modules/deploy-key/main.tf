@@ -1,4 +1,4 @@
-variable repo-name {}
+variable "repo-name" {}
 
 # ED25519 key
 resource "tls_private_key" "pk" {
@@ -14,11 +14,11 @@ resource "github_repository_deploy_key" "this" {
 }
 
 resource "local_file" "this" {
-    content = tls_private_key.pk.private_key_openssh
-    filename = "${path.cwd}/${github_repository_deploy_key.this.title}.pem"
-    
-    provisioner "local-exec" {
-        when = destroy
-        command = "rm -f ${self.filename}"
-    }
+  content  = tls_private_key.pk.private_key_openssh
+  filename = "${path.cwd}/${github_repository_deploy_key.this.title}.pem"
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "rm -f ${self.filename}"
+  }
 }

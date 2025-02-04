@@ -61,7 +61,7 @@ resource "github_repository_file" "index" {
   repository          = github_repository.mtc_repo[each.key].name
   branch              = "main"
   file                = each.value.filename
-  content             = "Hello ${each.value.lang}!"
+  content             = "Hello ${each.value.lang}"
   overwrite_on_create = true
 
   lifecycle {
