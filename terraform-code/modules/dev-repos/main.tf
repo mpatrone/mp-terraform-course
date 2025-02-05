@@ -1,6 +1,6 @@
 resource "github_repository" "mtc_repo" {
   for_each    = var.repos
-  name        = "mtc-${each.key}-${var.env}"
+  name        = "mp-${each.key}-${var.env}"
   description = "Sample repo created in Terraform"
   visibility  = "public" # Github restrictions on enabling Pages on private repos
   auto_init   = true
@@ -61,7 +61,7 @@ resource "github_repository_file" "index" {
   repository          = github_repository.mtc_repo[each.key].name
   branch              = "main"
   file                = each.value.filename
-  content             = "Hello ${each.value.lang}"
+  content             = "# Hello ${each.value.lang}"
   overwrite_on_create = true
 
   lifecycle {

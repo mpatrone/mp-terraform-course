@@ -13,10 +13,10 @@ locals {
     frontend = {
       lang     = "javascript"
       filename = "main.js"
-      pages    = true
+      pages    = false
     }
   }
-  environments = toset(["prod", "dev"])
+  environments = toset(["prod"])
 }
 
 module "repos" {
@@ -39,6 +39,6 @@ module "info-page" {
 }
 
 output "repo-list" {
-  value       = flatten([for k, v in module.repos : keys(v.clone-urls) if k == "dev"])
+  value       = flatten([for k, v in module.repos : keys(v.clone-urls)])
   description = "Repository names"
 }

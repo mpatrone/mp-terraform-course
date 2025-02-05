@@ -1,5 +1,5 @@
-repo_max = 2
-env      = "dev"
+repo_max = 10
+env      = "prod"
 repos = {
   backend = {
     lang     = "python"

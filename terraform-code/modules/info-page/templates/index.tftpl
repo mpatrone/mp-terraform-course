@@ -9,7 +9,7 @@ Hi! I'm ${name}. Check out my repos!
 ## Projects
 
 %{ for repo_key, repo_value in repos ~}
-| ${repo_key}    | [Webpage](${repo_value.pages-url}) | [GitHub](${repo_value.http-clone-url})   |
+| ${repo_key}    | ${repo_value.pages-url != "nopage" ? "[Webpage](${repo_value.pages-url})" : "No Page"} | [GitHub](${repo_value.http-clone-url})   |
 %{ endfor ~}
 
 

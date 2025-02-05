@@ -1,6 +1,6 @@
 resource "github_repository" "this" {
-  name        = "mtc-info-page"
-  description = "Sample info page repo"
+  name        = "mp-info-page"
+  description = "Repository summary repo"
   visibility  = "public" # Github restrictions on enabling Pages on private repos
   auto_init   = true
   pages {
